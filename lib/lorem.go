@@ -1,4 +1,4 @@
-package lorem
+package lib
 
 import (
 	"bytes"
@@ -67,7 +67,6 @@ func init() {
 func sampleWords(n int) []string {
 	perm := r.Perm(numWords)
 	ret := make([]string, n)
-	//for idx, p := range perm {
 	for i := 0; i < n; i++ {
 		ret[i] = WORDS[perm[i]]
 	}
@@ -75,12 +74,7 @@ func sampleWords(n int) []string {
 }
 
 func firstToUpper(s string) string {
-	// (i think) The first one declares buf, and it will then its have zero values.
-	// The second is a struct literal, and inititalizes no values, so ... they will
-	// have their zero values.
-	// tldr; these are equivalent
 	var buf bytes.Buffer
-	//buf := bytes.Buffer{}
 
 	first := true
 	for _, r := range s {
@@ -130,24 +124,6 @@ func ParagraphsC(count int) []string {
 	return Paragraphs(count, true)
 }
 
-// def words(count, common=True):
-//     """
-//     Returns a string of `count` lorem ipsum words separated by a single space.
-//
-//     If `common` is True, then the first 19 words will be the standard
-//     'lorem ipsum' words. Otherwise, all words will be selected randomly.
-//     """
-//     word_list = list(COMMON_WORDS) if common else []
-//     c = len(word_list)
-//     if count > c:
-//         count -= c
-//         while count > 0:
-//             c = min(count, len(WORDS))
-//             count -= c
-//             word_list += random.sample(WORDS, c)
-//     else:
-//         word_list = word_list[:count]
-//     return ' '.join(word_list)
 func Words(count int, common bool) []string {
 	var ws []string
 	if common {
@@ -155,15 +131,10 @@ func Words(count int, common bool) []string {
 	}
 
 	permIdxs := rand.Perm(len(WORDS))
-	//fmt.Printf("permIdxs lens %d %d\n", len(permIdxs), len(WORDS))
-	//fmt.Printf("len ws: %d   count: %d\n", len(ws), count)
 	len_ws := len(ws)
 	if count > len_ws {
-		//fmt.Printf(" count-len(ws): %d\n", count-len(ws))
 		for i := 0; i < count-len_ws; i++ {
-			//fmt.Printf("i: %d\n", i)
 			w := WORDS[permIdxs[i]]
-			//fmt.Printf("w:%s\n", w)
 			ws = append(ws, w)
 		}
 	}

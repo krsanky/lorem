@@ -8,22 +8,22 @@ package main
 import (
 	"fmt"
 
-	"oldcode.org/web/lorem"
+	"oldcode.org/lorem/lib"
 )
 
 func main() {
 	fmt.Printf("Main ...\n")
 
-	//fmt.Println(lorem.Sentence())
-	//fmt.Println(lorem.Paragraph())
+	//fmt.Println(lib.Sentence())
+	//fmt.Println(lib.Paragraph())
 
-	//ps := lorem.ParagraphsC(5)
+	//ps := lib.ParagraphsC(5)
 	//for _, p := range ps {
 	//	fmt.Println(p)
 	//	fmt.Println()
 	//}
 
-	fmt.Println(lorem.Words(4, false))
+	fmt.Println(lib.Words(4, false))
 	fmt.Println()
-	fmt.Println(lorem.Words(5, true))
+	fmt.Println(lib.Words(5, true))
 }
