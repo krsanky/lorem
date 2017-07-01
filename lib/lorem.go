@@ -120,9 +120,6 @@ func Paragraphs(count int, common bool) []string {
 	}
 	return ps
 }
-func ParagraphsC(count int) []string {
-	return Paragraphs(count, true)
-}
 
 func Words(count int, common bool) []string {
 	var ws []string
@@ -130,7 +127,7 @@ func Words(count int, common bool) []string {
 		ws = COMMON_WORDS[:]
 	}
 
-	permIdxs := rand.Perm(len(WORDS))
+	permIdxs := r.Perm(len(WORDS))
 	len_ws := len(ws)
 	if count > len_ws {
 		for i := 0; i < count-len_ws; i++ {
