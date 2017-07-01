@@ -12,6 +12,13 @@ import (
 )
 
 func main() {
-	fmt.Printf("Main2 ...\n")
-	fmt.Println(lorem.Sentence())
+	fmt.Printf("Main ...\n")
+	//fmt.Println(lorem.Sentence())
+	//fmt.Println(lorem.Paragraph())
+	ps := lorem.ParagraphsC(5)
+	for _, p := range ps {
+		fmt.Println(p)
+		fmt.Println()
+	}
+
 }

@@ -9,13 +9,13 @@ import (
 	"unicode"
 )
 
-var COMMON_P = `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim 
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
-commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
-velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
-mollit anim id est laborum.`
+var COMMON_P = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod " +
+	"tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim " +
+	"veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea " +
+	"commodo consequat. Duis aute irure dolor in reprehenderit in voluptate " +
+	"velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint " +
+	"occaecat cupidatat non proident, sunt in culpa qui officia deserunt " +
+	"mollit anim id est laborum."
 
 var WORDS = [...]string{
 	"exercitationem", "perferendis", "perspiciatis", "laborum", "eveniet",
@@ -102,32 +102,29 @@ func Sentence() string {
 	return fmt.Sprintf("%s%s", tmp, p)
 }
 
-// def paragraph():
-//     """
-//     Returns a randomly generated paragraph of lorem ipsum text.
-//
-//     The paragraph consists of between 1 and 4 sentences, inclusive.
-//     """
-//     return ' '.join(sentence() for i in range(random.randint(1, 4)))
-//
-//
-// def paragraphs(count, common=True):
-//     """
-//     Returns a list of paragraphs as returned by paragraph().
-//
-//     If `common` is True, then the first paragraph will be the standard
-//     'lorem ipsum' paragraph. Otherwise, the first paragraph will be random
-//     Latin text. Either way, subsequent paragraphs will be random Latin text.
-//     """
-//     paras = []
-//     for i in range(count):
-//         if common and i == 0:
-//             paras.append(COMMON_P)
-//         else:
-//             paras.append(paragraph())
-//     return paras
-//
-//
+func Paragraph() string {
+	ss := make([]string, r.Intn(4)+1)
+	for i := 0; i < len(ss); i++ {
+		ss[i] = Sentence()
+	}
+	return strings.Join(ss, " ")
+}
+
+func Paragraphs(count int, common bool) []string {
+	ps := make([]string, count)
+	for i := 0; i < count; i++ {
+		if common && i == 0 {
+			ps[i] = COMMON_P
+		} else {
+			ps[i] = Paragraph()
+		}
+	}
+	return ps
+}
+func ParagraphsC(count int) []string {
+	return Paragraphs(count, true)
+}
+
 // def words(count, common=True):
 //     """
 //     Returns a string of `count` lorem ipsum words separated by a single space.
