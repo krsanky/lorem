@@ -65,15 +65,20 @@ func init() {
 }
 
 func sampleWords(n int) []string {
-	perm := r.Perm(n)
-	ret := make([]string, len(perm))
-	for idx, p := range perm {
-		ret[idx] = WORDS[p]
+	perm := r.Perm(numWords)
+	ret := make([]string, n)
+	//for idx, p := range perm {
+	for i := 0; i < n; i++ {
+		ret[i] = WORDS[perm[i]]
 	}
 	return ret
 }
 
 func firstToUpper(s string) string {
+	// (i think) The first one declares buf, and it will then its have zero values.
+	// The second is a struct literal, and inititalizes no values, so ... they will
+	// have their zero values.
+	// tldr; these are equivalent
 	var buf bytes.Buffer
 	//buf := bytes.Buffer{}
 
@@ -143,3 +148,24 @@ func ParagraphsC(count int) []string {
 //     else:
 //         word_list = word_list[:count]
 //     return ' '.join(word_list)
+func Words(count int, common bool) []string {
+	var ws []string
+	if common {
+		ws = COMMON_WORDS[:]
+	}
+
+	permIdxs := rand.Perm(len(WORDS))
+	//fmt.Printf("permIdxs lens %d %d\n", len(permIdxs), len(WORDS))
+	//fmt.Printf("len ws: %d   count: %d\n", len(ws), count)
+	len_ws := len(ws)
+	if count > len_ws {
+		//fmt.Printf(" count-len(ws): %d\n", count-len(ws))
+		for i := 0; i < count-len_ws; i++ {
+			//fmt.Printf("i: %d\n", i)
+			w := WORDS[permIdxs[i]]
+			//fmt.Printf("w:%s\n", w)
+			ws = append(ws, w)
+		}
+	}
+	return ws[:count]
+}
