@@ -11,7 +11,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/krsanky/lorem/lib"
+	"github.com/krsanky/lorem"
 )
 
 func usage() {
