@@ -34,7 +34,7 @@ func main() {
 
 	switch l := len(args); {
 	case l == 0:
-		fmt.Println(lib.COMMON_P)
+		fmt.Println(lorem.COMMON_P)
 		os.Exit(0)
 	case l == 2, l == 3:
 		num, err = strconv.ParseInt(args[0], 10, 0)
@@ -62,10 +62,10 @@ func main() {
 
 	switch porw {
 	case "p":
-		ps := lib.Paragraphs(int(num), !random)
+		ps := lorem.Paragraphs(int(num), !random)
 		fmt.Println(strings.Join(ps, "\n\n"))
 	case "w":
-		ws := lib.Words(int(num), !random)
+		ws := lorem.Words(int(num), !random)
 		fmt.Println(strings.Join(ws, " "))
 	default:
 		usage()
